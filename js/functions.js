@@ -18,3 +18,15 @@ function polindrom (word){
 
 polindrom("а роза упала на лапу азора")
 
+function findNumb (str){
+  let string = str.toString();
+  let count = '';
+  for (let i = 0; i<string.length;i++){
+    if(!Number.isNaN(parseInt(string[i], 10))){
+      count == string[i];
+    }
+  }
+  return parseInt(count, 10);
+}
+
+findNumb(1.5);
