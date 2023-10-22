@@ -1,6 +1,9 @@
 function stringMoreThenLength (string, length) {
   return (string.length <= length) ? 'true' : 'false';
-};
+}
+
+stringMoreThenLength("новая строка", 12);
+
 function polindrom (word){
   const tempString = word
   .toLowerCase ()
@@ -11,4 +14,7 @@ function polindrom (word){
     reverseString += tempString.at(i);
   }
   return tempString === reverseString;
-};
+}
+
+polindrom("а роза упала на лапу азора")
+
