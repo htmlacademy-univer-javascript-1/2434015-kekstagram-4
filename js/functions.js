@@ -30,3 +30,14 @@ function findNumb (str){
 }
 
 findNumb(1.5);
+
+function work_day_meet (start, end, start_meet, time_meet){
+  var step = 60,
+    d = ':',
+    st = start_meet.split(d), st = st [0]* step * step + st [1] * step,
+    e = end.split (d), e = e [0]* step * step + e [1] * step ,
+    t = st + time_meet;
+return (t >= start && t <= end);
+}
+
+work_day_meet('08:00', '17:30', '14:00', 90);
