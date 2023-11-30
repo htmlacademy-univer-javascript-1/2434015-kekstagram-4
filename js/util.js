@@ -1,30 +1,24 @@
-const get_random_value = (min, max) => {
-  if (min < 0 || max < 0) {
-    return -1;
-  }
-  if (max < min) {
-    [min, max] = [max, min];
-  }
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
-const get_random_element = (array) => {
-  return array[get_random_value
-  (0, array.length - 1)];
-};
+// Вспомогательная функция #2 - поиск рандомного элемента массива
 
-const get_unick_value = (array, min, max) => {
-  const id = get_random_value
-(min, max);
-  if (array.some((item) => item === id)) {
-    get_unick_value
-  (array, min, max);
-  }
-  return id;
-};
+const getRandomArrayElement = (array) =>
+  array[getRandomInteger(0, array.length - 1)];
 
-const max_length_check = (text, count) => {
-  return text.length <= count;
-};
+// Вспомогательная функция #3 - генерация ID
 
-export { get_random_value, get_random_element, get_unick_value, max_length_check };
+function createIdGenerator () {
+  let lastGeneratedId = 0;
+
+  return () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  };
+}
+
+export {getRandomInteger, getRandomArrayElement, createIdGenerator};

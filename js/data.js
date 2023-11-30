@@ -1,69 +1,73 @@
-const Const = {
-  posts_count: 25,
-  names: ['Генадий', 'Роман', 'Анна', 'Мария', 'Виктор', 'Анжелика', 'Елизавета', 'Олег', 'Николай', 'Павел'],
-  comments: [
-    'Всё отлично!',
-    'В целом всё неплохо. Но не всё.',
-    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-  ],
-  count_comments: {
-    min: 0,
-    max: 10,
-  },
-  count_likes: {
-    min: 15,
-    max: 200,
-  },
-  count_avatar: 6,
-  comment_max_length: 140,
-};
+import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
 
-const IDS_array = [];
+const PICTURE_COUNT = 25;
+const AVATAR_COUNT = 6;
+const LIKES_MIN_COUNT = 15;
+const LIKES_MAX_COUNT = 200;
+const COMMENT_COUNT = 20;
+const COMMENT_LINES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
 
-const createComment = () => {
-  const comments = [];
-  let commentId;
-  for (let i = 0; i < get_random_value
-  (Const.count_comments.min, Const.count_comments.max); i++) {
-    commentId = get_unick_value
-  (IDS_array
-    , 1, 999);
-    IDS_array
-  .push(commentId);
+const DESCRIPTIONS = [
+  'Первый раз - в первый класс! #school #memories',
+  'Осень, осень, ну давай у листьев спросим...',
+  'Рецепт шарлотки - 4 яйца, 1 стакан муки, 1 стакан сахара и 4 яблока. Все смешать и в духовку на 40 минут.',
+  'Однажды на даче #камин #отдых #уют',
+  'В нашей семье пополнение - новый друг - пушистик Лакки #goldenretriever',
+  'Дети - цветы жизни #любовь #семья #счастье',
+  'Наши веселые будни #прогулка #радость #мокрыелапы'
+];
 
-    let messages = new Array(2)
-      .fill(null)
-      .map(() => get_random_element(Const.comments))
-      .reduce((result, item) => {
-        return result.includes(item) ? result : [...result, item];
-      }, [])
-      .join(' ');
+const NAMES = [
+  'Никита', 'Арина', 'Артемий', 'Ольга', 'Виктор', 'Елизавета', 'Даниил', 'Анастасия', 'Роман', 'Мия', 'Евгений', 'Наталья', 'Ярослав',
+  'Надежда', 'Александр', 'Лолита', 'Дмитрий', 'Андрей'
+];
 
-    comments.push({
-      id: commentId,
-      avatar: `img/avatar-${get_random_value
-      (1, Const.count_avatar)}.svg`,
-      message: messages.substr(0, Const.comment_max_length),
-      name: get_random_element(Const.names),
-    });
-  }
-  return comments;
-};
+// Вспомогательная функция #3 - генерация ID
 
-const posts = new Array(Const.posts_count)
-  .fill(null)
-  .map((item, index) => {
-    return {
-      id: index + 1,
-      url: `photos/${index + 1}.jpg`,
-      description: `Описание #${index + 1}`,
-      likes: get_random_value
-    (15, 200),
-      comments: createComment(),
-    };
-  });
+function createIdGenerator () {
+  let lastGeneratedId = 0;
 
-export { Const, posts };
+  return () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  };
+}
+
+const generateCommentId = createIdGenerator();
+
+const createMessage = () =>
+  Array.from({length: getRandomInteger(1,2)}, () =>
+    getRandomArrayElement(COMMENT_LINES)
+  ).join(' ');
+
+const createComment = () => ({
+  id: generateCommentId(),
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
+  message: createMessage(),
+  name: getRandomArrayElement(NAMES),
+});
+
+const createPicture = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LIKES_MIN_COUNT, LIKES_MAX_COUNT),
+  comments: Array.from(
+    {length:getRandomInteger(0, COMMENT_COUNT)},
+    createComment
+  ),
+});
+
+const getPictures = () =>
+  Array.from({length: PICTURE_COUNT}, (_, pictureIndex) =>
+    createPicture(pictureIndex + 1)
+  );
+
+export {getPictures};
