@@ -1,24 +1,35 @@
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+const getRandomInt = (min, max) => {
+  if (min < 0 || max < 0) {
+    return -1;
+  }
+
+  if (max < min) {
+    [min, max] = [max, min];
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// Вспомогательная функция #2 - поиск рандомного элемента массива
+const getRandomElement = (array) => {
+  return array[getRandomInt(0, array.length - 1)];
+};
 
-const getRandomArrayElement = (array) =>
-  array[getRandomInteger(0, array.length - 1)];
+const getUniqueValue = (array, min, max) => {
+  const id = getRandomInt(min, max);
 
-// Вспомогательная функция #3 - генерация ID
+  if (array.some((item) => item === id)) {
+    getUniqueValue(array, min, max);
+  }
 
-function createIdGenerator () {
-  let lastGeneratedId = 0;
+  return id;
+};
 
-  return () => {
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
-}
+const removeDuplicate = (arr) => [...new Set(arr)];
 
-export {getRandomInteger, getRandomArrayElement, createIdGenerator};
+const checkingMaxLength = (text, count) => {
+  return text.length <= count;
+};
+
+// checkingMaxLength('Какая интересная фотка', POSTS_DATA.comment_max_length);
+
+export { getRandomInt, getRandomElement, getUniqueValue, removeDuplicate, checkingMaxLength };
