@@ -1,2 +1,3 @@
-//import { Const, posts } from './data.js';
-//console.log(posts);
+import {getPictures} from './data.js';
+import {renderThumbnails} from './thumbnail.js';
+renderThumbnails(getPictures());
