@@ -1,4 +1,4 @@
-import { renderPosts } from 'js/preview.js';
-// import { POSTS_DATA, posts } from './data.js';
-// console.log(posts);
+import { renderPosts } from './preview.js';
+import './upload-form.js';
+
 renderPosts();
