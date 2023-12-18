@@ -21,6 +21,7 @@ const createPostPreview = (post) => {
 
 const renderPosts = () => {
   const picturesFragment = document.createDocumentFragment();
+
   posts.forEach((post) => {
     picturesFragment.appendChild(createPostPreview(post));
   });

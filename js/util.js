@@ -1,3 +1,8 @@
+const Keys = {
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
+};
+
 const getRandomInt = (min, max) => {
   if (min < 0 || max < 0) {
     return -1;
@@ -30,10 +35,8 @@ const checkingMaxLength = (text, count) => {
   return text.length <= count;
 };
 
-// checkingMaxLength('Какая интересная фотка', POSTS_DATA.comment_max_length);
-
 const isEscEvent = (evt) => {
-  return evt.key === 'Escape' || evt.key === 'Esc';
+  return evt.key === Keys.ESC || evt.key === Keys.ESCAPE;
 };
 
 export { getRandomInt, getRandomElement, getUniqueValue, removeDuplicate, checkingMaxLength, isEscEvent };
