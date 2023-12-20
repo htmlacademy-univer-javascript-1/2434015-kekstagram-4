@@ -2602,34 +2602,20 @@
           valueSet(optionsToUpdate.start || v, fireSetEvent);
       }
 
-      // Initialization steps
       function setupSlider() {
-          // Create the base element, initialize HTML and set classes.
-          // Add handles and connect elements.
           scope_Base = addSlider(scope_Target);
-
           addElements(options.connect, scope_Base);
-
-          // Attach user events.
           bindSliderEvents(options.events);
-
-          // Use the public value method to set the start values.
           valueSet(options.start);
-
           if (options.pips) {
               pips(options.pips);
           }
-
           if (options.tooltips) {
               tooltips();
           }
-
           aria();
       }
-
       setupSlider();
-
-      // noinspection JSUnusedGlobalSymbols
       scope_Self = {
           destroy: destroy,
           steps: getNextSteps,
@@ -2639,13 +2625,12 @@
           set: valueSet,
           setHandle: valueSetHandle,
           reset: valueReset,
-          // Exposed for unit testing, don't use this in your application.
           __moveHandles: function(a, b, c) {
               moveHandles(a, b, scope_Locations, c);
           },
-          options: originalOptions, // Issue #600, #678
+          options: originalOptions,
           updateOptions: updateOptions,
-          target: scope_Target, // Issue #597
+          target: scope_Target,
           removePips: removePips,
           removeTooltips: removeTooltips,
           getTooltips: function() {
@@ -2654,39 +2639,27 @@
           getOrigins: function() {
               return scope_Handles;
           },
-          pips: pips // Issue #594
+          pips: pips
       };
 
       return scope_Self;
   }
 
-  // Run the standard initializer
   function initialize(target, originalOptions) {
       if (!target || !target.nodeName) {
           throw new Error("noUiSlider (" + VERSION + "): create requires a single element, got: " + target);
       }
-
-      // Throw an error if the slider was already initialized.
       if (target.noUiSlider) {
           throw new Error("noUiSlider (" + VERSION + "): Slider was already initialized.");
       }
-
-      // Test the options and create the slider environment;
       var options = testOptions(originalOptions, target);
       var api = scope(target, options, originalOptions);
-
       target.noUiSlider = api;
-
       return api;
   }
-
-  // Use an object instead of a function for future expandability;
   return {
-      // Exposed for unit testing, don't use this in your application.
       __spectrum: Spectrum,
       version: VERSION,
-      // A reference to the default classes, allows global changes.
-      // Use the cssClasses option for changes to one slider.
       cssClasses: cssClasses,
       create: initialize
   };
