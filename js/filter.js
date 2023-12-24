@@ -26,7 +26,7 @@ const rerender = debounce((id) => {
 
   switch (id) {
     case 'filter-random':
-      postsCurrent = shuffle(posts.slice()).slice(0, POSTS_DATA.count_random_posts);
+      postsCurrent = shuffle(posts.slice()).slice(0, POSTS_DATA.countRandomPosts);
       break;
     case 'filter-discussed':
       postsCurrent = posts.slice().sort((a, b) => b.comments.length - a.comments.length);

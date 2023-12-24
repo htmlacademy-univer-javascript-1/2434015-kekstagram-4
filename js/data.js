@@ -1,8 +1,8 @@
 import { getRandomInt, getRandomElement, getUniqueValue } from './util.js';
 
 const POSTS_DATA = {
-  count_posts: 25,
-  count_random_posts: 10,
+  countPosts: 25,
+  countRandomPosts: 10,
   names: ['Никита', 'Арина', 'Артемий', 'Ольга', 'Виктор', 'Елизавета', 'Даниил', 'Анастасия', 'Роман', 'Евгений', 'Наталья',
   'Ярослав', 'Надежда', 'Александр', 'Лолита', 'Дмитрий', 'Вера'],
   comments: [
@@ -13,16 +13,16 @@ const POSTS_DATA = {
     'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
   ],
-  count_likes: {
+  countLikes: {
     min: 15,
     max: 200,
   },
-  count_comments: {
+  countComments: {
     min: 0,
     max: 10,
   },
-  count_avatar: 6,
-  comment_max_length: 140,
+  countAvatar: 6,
+  commentMaxLength: 140,
 };
 
 let posts;
@@ -33,7 +33,7 @@ const createComment = () => {
   const comments = [];
   let commentId;
 
-  for (let i = 0; i < getRandomInt(POSTS_DATA.count_comments.min, POSTS_DATA.count_comments.max); i++) {
+  for (let i = 0; i < getRandomInt(POSTS_DATA.countComments.min, POSTS_DATA.countComments.max); i++) {
     commentId = getUniqueValue(arrayIds, 1, 999);
     arrayIds.push(commentId);
 
@@ -48,8 +48,8 @@ const createComment = () => {
 
     comments.push({
       id: commentId,
-      avatar: `img/avatar-${getRandomInt(1, POSTS_DATA.count_avatar)}.svg`,
-      message: messages.substr(0, POSTS_DATA.comment_max_length),
+      avatar: `img/avatar-${getRandomInt(1, POSTS_DATA.countAvatar)}.svg`,
+      message: messages.substr(0, POSTS_DATA.commentMaxLength),
       name: getRandomElement(POSTS_DATA.names),
     });
   }
@@ -59,7 +59,7 @@ const createComment = () => {
 
 // генерация постов
 const createPosts = () => {
-  posts = new Array(POSTS_DATA.count_posts)
+  posts = new Array(POSTS_DATA.countPosts)
     .fill(null)
     .map((item, index) => {
       return {
