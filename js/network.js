@@ -1,13 +1,13 @@
 const Urls = {
-  GET: 'https://23.javascript.pages.academy/kekstagram/data',
-  POST: 'https://23.javascript.pages.academy/kekstagram',
+  GET: "https://23.javascript.pages.academy/kekstagram/data",
+  POST: "https://23.javascript.pages.academy/kekstagram",
 };
 
 const ServerCodes = {
-  400: 'Неверный запрос',
-  401: 'Пользователь не авторизован',
-  404: 'Страница не найдена',
-  500: 'Внутренняя ошибка сервера',
+  400: "Неверный запрос",
+  401: "Пользователь не авторизован",
+  404: "Страница не найдена",
+  500: "Внутренняя ошибка сервера",
 };
 
 const request = (onSuccess, onFail, method, data) => {

@@ -1,9 +1,9 @@
 const DEBOUNCE_INTERVAL = 500;
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const FILE_TYPES = ["gif", "jpg", "jpeg", "png"];
 
 const Keys = {
-  ESC: 'Esc',
-  ESCAPE: 'Escape',
+  ESC: "Esc",
+  ESCAPE: "Escape",
 };
 
 const getRandomInt = (min, max) => {
@@ -77,7 +77,7 @@ const getPhotoSrc = (fileChooser, onSuccess) => {
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
-    reader.addEventListener('load', () => onSuccess(reader.result), { once: true });
+    reader.addEventListener("load", () => onSuccess(reader.result), { once: true });
   }
 };
 

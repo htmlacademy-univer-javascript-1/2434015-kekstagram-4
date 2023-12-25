@@ -1,16 +1,16 @@
 const MODAL_SHOW_TIME = 3000;
 
-/*const receiveErrorTemplate = document.querySelector('#error-receive').content.querySelector('.error');*/
-const loadSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
-const loadErrorTemplate = document.querySelector('#error').content.querySelector('.error');
+const receiveErrorTemplate = document.querySelector("#error-receive").content.querySelector(".error");
+const loadSuccessTemplate = document.querySelector("#success").content.querySelector(".success");
+const loadErrorTemplate = document.querySelector("#error").content.querySelector(".error");
 
 const createModalFragment = (template, message) => {
   const modalFragment = document.createDocumentFragment();
 
   const modalBlock = template.cloneNode(true);
-  modalBlock.classList.add('modal-show-active');
+  modalBlock.classList.add("modal-show-active");
   if (message) {
-    modalBlock.querySelector('.error__title').textContent = message;
+    modalBlock.querySelector(".error__title").textContent = message;
   }
 
   modalFragment.appendChild(modalBlock);
@@ -21,7 +21,7 @@ const createModalFragment = (template, message) => {
 const removeModal = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      document.querySelector('.modal-show-active').remove();
+      document.querySelector(".modal-show-active").remove();
       resolve();
     }, MODAL_SHOW_TIME);
   });
