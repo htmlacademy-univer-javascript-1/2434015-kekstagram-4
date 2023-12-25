@@ -22,11 +22,14 @@ const effects = document.querySelector('.img-upload__effects');
 const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 
+
+
 const resetForm = () => {
   scaleControlValue.value = '100%';
   imgUploadPreview.style = '';
 
   resetEffectImage();
+
 };
 
 const renderPhotoPreview = (src) => {
@@ -61,14 +64,14 @@ const closeUploadForm = () => {
   uploadFileInput.value = '';
   destroySlider();
 
-  document.removeEventListener('keydown', onPopupEscKeydown);
+  /*document.removeEventListener('keydown', onPopupEscKeydown);
   imgUploadCancel.removeEventListener('click', closeUploadForm);
   scaleControlSmaller.removeEventListener('click', zoomIn);
   scaleControlBigger.removeEventListener('click', zoomOut);
   effects.removeEventListener('change', onEffectsChange);
   textHashtags.removeEventListener('input', onHashtagsInput);
   textDescription.removeEventListener('input', onDescriptionInput);
-  imgUploadForm.removeEventListener('submit', onImgUploadFormSubmit);
+  imgUploadForm.removeEventListener('submit', onImgUploadFormSubmit);*/
 };
 
 const onHashtagsInput = () => validationText(textHashtags, 'hashtag');
@@ -81,7 +84,9 @@ const onPopupEscKeydown = (evt) => {
     if (!document.activeElement.matches('.text__hashtags') && !document.activeElement.matches('.text__description')) {
       closeUploadForm();
     }
+
   }
+
 };
 
 const onSuccess = () => {

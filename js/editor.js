@@ -8,6 +8,7 @@ const Effect = {
   heat: { min: 1, max: 3, step: 0.1, style: (value) => `brightness(${value})` },
   none: { min: 0, max: 100, step: 1, style: () => 'none' },
 };
+const effectLabel = document.getElementById('effect-none');
 
 const effectLevel = document.querySelector('.effect-level');
 const sliderElement = effectLevel.querySelector('.effect-level__slider');
@@ -23,7 +24,7 @@ const imgEffect = {
 const resetEffectImage = () => {
   imgEffect.effect = 'none';
   imgEffect.value = 100;
-
+  effectLabel.checked = true;
   updateEffectImage();
 };
 
@@ -41,6 +42,7 @@ const updateEffectImage = () => {
 
   if (imgEffect.effect == 'none') {
     effectLevel.classList.add('visually-hidden');
+
   } else {
     effectLevel.classList.remove('visually-hidden');
   }
